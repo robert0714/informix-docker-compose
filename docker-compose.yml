@@ -1,0 +1,30 @@
+version: '3'
+services:
+  informix-server:
+    image: ibmcom/informix-developer-database:14.10.FC7W1DE
+    container_name: informix 
+    environment:
+      LICENSE: 'accept'
+      STORAGE: 'local'
+      ONCONFIG_FILE: 'onconfig'
+      # SQLHOSTS_FILE: 'sqlhosts'
+      LC_COLLATE: 'zh_tw.utf8'
+      LC_CTYPE:  'zh_tw.utf8'
+      LC_MONETARY:  'zh_tw.utf8'
+      LC_NUMERIC:  'zh_tw.utf8'
+      LC_TIME:  'zh_tw.utf8'
+      SERVER_LOCALE: 'zh_tw.utf8'
+    privileged: true
+    ports:
+         - 27017:27017
+         - 27018:27018
+         - 27883:27883
+         - 9088:9088
+         - 9089:9089  
+    volumes:
+         - ${PWD}/informix-server:/opt/ibm/localdata
+         - ${PWD}/config:/opt/ibm/config  
+         - ${PWD}/users:/opt/ibm/informix/etc/users
+         - ${PWD}/allowed.surrogates:/etc/informix/allowed.surrogates
+
+

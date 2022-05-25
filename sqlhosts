@@ -1,0 +1,7 @@
+############################################################
+### DO NOT MODIFY THIS COMMENT SECTION 
+### HOST NAME = 8c2adabc68ef 
+############################################################
+joe             onsoctcp        *                     9088
+informix        onsoctcp        *8c2adabc68ef         9088
+informix_dr     drsoctcp        *8c2adabc68ef         9089:
