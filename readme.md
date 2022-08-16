@@ -1,3 +1,6 @@
+# Informix developer edition license restriction limits (25)
+
+ibmcom/informix-innovator-c:14.10.FC7W1IE
 # Preparation for docker
 ```shell
 sudo chmod -R 777 config
