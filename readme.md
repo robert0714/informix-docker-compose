@@ -104,7 +104,9 @@ dbaccess batchmnt *.sql
     </driver>
 </drivers> 
 ```
+# ibmcom/informix-developer-database:14.10.FC7W1DE
 when XA-Datasource's named **DatabaseName**, values ( **sysadmin** , **sysmaster** ,**sysuser** ) , you can see the congiuration worked well. But other databases were not .
+
 **⚠ TIP:**   You need to cinfgiure the informix database use **logging mode**
 ```shell
     [informix@c7de582cc2f4 ~]$ ontape -s -U commondb
@@ -113,3 +115,15 @@ when XA-Datasource's named **DatabaseName**, values ( **sysadmin** , **sysmaster
     Program over.    
     [informix@c7de582cc2f4 ~]$
 ``` 
+# ibmcom/informix-innovator-c:14.10.FC7W1IE
+when XA-Datasource's named **DatabaseName**, values ( **sysadmin** , **sysmaster** ,**sysuser** ) , you can see the congiuration worked well. But other databases were not .
+
+**⚠ TIP:**   You need to cinfgiure the informix database use **logging mode** in  dbacess:
+```shell
+SQL:   New  Run  Modify  Use-editor  Output  Choose  Save  Info  Drop  Exit
+Run the current SQL statements.
+
+----------------------- commondb@informix ------ Press CTRL-W for Help --------
+
+create database commondb with log;
+```

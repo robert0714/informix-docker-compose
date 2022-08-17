@@ -1,0 +1,116 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: informix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: informix
+  template:
+    metadata:
+      labels:
+        deployment: informix
+    spec:
+      volumes: 
+        - name: informix-localdata
+          persistentVolumeClaim:
+            claimName: informix-data 
+        - name: informix-tmpfile
+          persistentVolumeClaim:
+            claimName: informix-tmpfile
+        - name: informix-config
+          persistentVolumeClaim:
+            claimName: informix-config     
+      containers:
+        - resources: {} 
+          name: informix
+          env:
+            - name: LICENSE
+              value: accept
+            - name: STORAGE
+              value: local
+            # - name: ONCONFIG_FILE
+            #   value: onconfig
+            - name: TZ
+              value: Asia/Taipei
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 9088
+              protocol: TCP
+            - containerPort: 9091
+              protocol: TCP
+            - containerPort: 27018
+              protocol: TCP
+            - containerPort: 27883
+              protocol: TCP
+            - containerPort: 9089
+              protocol: TCP
+            - containerPort: 9090
+              protocol: TCP
+            - containerPort: 9092
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: informix-localdata
+              mountPath: /opt/ibm/data
+            - name: informix-config
+              mountPath: /opt/ibm/config
+            - name: informix-tmpfile
+              mountPath: /opt/ibm/files 
+          image: >-
+            ibmcom/informix-innovator-c:14.10.FC7W1IE
+      restartPolicy: Always
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: informix
+  labels:
+    app: informix
+spec:
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 9088-tcp
+      protocol: TCP
+      port: 9088
+      targetPort: 9088
+    - name: 9089-tcp
+      protocol: TCP
+      port: 9089
+      targetPort: 9089
+    - name: 9090-tcp
+      protocol: TCP
+      port: 9090
+      targetPort: 9090
+    - name: 9091-tcp
+      protocol: TCP
+      port: 9091
+      targetPort: 9091
+    - name: 9092-tcp
+      protocol: TCP
+      port: 9092
+      targetPort: 9092
+    - name: 27017-tcp
+      protocol: TCP
+      port: 27017
+      targetPort: 27017
+    - name: 27018-tcp
+      protocol: TCP
+      port: 27018
+      targetPort: 27018
+    - name: 27883-tcp
+      protocol: TCP
+      port: 27883
+      targetPort: 27883 
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    deployment: informix

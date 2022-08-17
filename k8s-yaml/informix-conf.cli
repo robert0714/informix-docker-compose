@@ -1,0 +1,14 @@
+kubectl  create configmap informix-conf --from-file=../config/onconfig
+
+kubectl  delete configmap informix-conf 
+
+
+kubectl  create configmap informix-rest --from-file=../config/wl_rest.properties
+
+
+kubectl  create configmap informix-mongo --from-file=../config/wl_mongo.properties
+
+
+kubectl  create configmap informix-mqtt --from-file=../config/wl_mqtt.properties
+
+

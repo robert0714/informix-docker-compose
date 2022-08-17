@@ -1,0 +1,35 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: informix-data 
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 20Gi
+  volumeMode: Filesystem 
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: informix-tmpfile
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem 
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: informix-config
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem 

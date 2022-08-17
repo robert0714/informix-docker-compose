@@ -1,19 +1,21 @@
 version: '3'
 services:
   informix-server:
-    image: ibmcom/informix-developer-database:14.10.FC7W1DE
+    # image: ibmcom/informix-developer-database:14.10.FC7W1DE
+    image: ibmcom/informix-innovator-c:14.10.FC7W1IE
     container_name: informix 
     environment:
       LICENSE: 'accept'
       STORAGE: 'local'
       ONCONFIG_FILE: 'onconfig'
       # SQLHOSTS_FILE: 'sqlhosts'
-      LC_COLLATE: 'zh_tw.utf8'
-      LC_CTYPE:  'zh_tw.utf8'
-      LC_MONETARY:  'zh_tw.utf8'
-      LC_NUMERIC:  'zh_tw.utf8'
-      LC_TIME:  'zh_tw.utf8'
-      SERVER_LOCALE: 'zh_tw.utf8'
+     # LC_COLLATE: 'zh_tw.utf8'
+     # LC_CTYPE:  'zh_tw.utf8'
+     # LC_MONETARY:  'zh_tw.utf8'
+     # LC_NUMERIC:  'zh_tw.utf8'
+     # LC_TIME:  'zh_tw.utf8'
+     # SERVER_LOCALE: 'zh_tw.utf8'
+      TZ: 'Asia/Taipei'
     privileged: true
     ports:
          - 27017:27017
