@@ -30,8 +30,6 @@ spec:
               value: accept
             - name: STORAGE
               value: local
-            # - name: ONCONFIG_FILE
-            #   value: onconfig
             - name: TZ
               value: Asia/Taipei
           ports:
@@ -110,7 +108,5 @@ spec:
       port: 27883
       targetPort: 27883 
   type: ClusterIP
-  ipFamilyPolicy: SingleStack
-  sessionAffinity: None
   selector:
     deployment: informix
